@@ -57,6 +57,28 @@ body {
     width: 100%;
     height: 100vh;
     transform: none;
+
+    &.color-aqua {
+        background-color: #00ffff;
+    }
+    &.color-azure {
+        background-color: #f0ffff;
+    }
+    &.color-beige {
+        background-color: #f5f5dc;
+    }
+    &.color-black {
+        background-color: #000000;
+    }
+    &.color-blue {
+        background-color: #0000ff;
+    }
+    &.color-brown {
+        background-color: #a52a2a;
+    }
+    &.color-cyan {
+        background-color: #00ffff;
+    }
 }
 
 .bubble.is-animated {

@@ -1,12 +1,12 @@
 // Avoid `console` errors in browsers that lack a console.
 (function() {
     var method;
-    var noop = function () {};
+    var noop = function() {};
     var methods = [
-        'assert', 'clear', 'count', 'debug', 'dir', 'dirxml', 'error',
-        'exception', 'group', 'groupCollapsed', 'groupEnd', 'info', 'log',
-        'markTimeline', 'profile', 'profileEnd', 'table', 'time', 'timeEnd',
-        'timeline', 'timelineEnd', 'timeStamp', 'trace', 'warn'
+    'assert', 'clear', 'count', 'debug', 'dir', 'dirxml', 'error',
+    'exception', 'group', 'groupCollapsed', 'groupEnd', 'info', 'log',
+    'markTimeline', 'profile', 'profileEnd', 'table', 'time', 'timeEnd',
+    'timeline', 'timelineEnd', 'timeStamp', 'trace', 'warn'
     ];
     var length = methods.length;
     var console = (window.console = window.console || {});
@@ -23,7 +23,7 @@
 
 
 
-/* 
+/*
 * 01)
 *
 * HV Translations
@@ -34,37 +34,29 @@ window.hv = window.hv || {};
 (function(window, undefined) {
 
     var DEFAULTS = {
-            selector: ".js-app",
-            template: '<div class="js-bubble bubble"><div class="stage"><h1 class="fittext">$(text)</h1><p class="translation">$(text2)</p></div><div class="credits"><p class="author">$(name)</p></div></div>',
-            elements: [],
-            bubble: {
-                selector: ".js-bubble"
+        selector: '.js-app',
+        template: '<div class="js-bubble bubble"><div class="stage"><h1 class="fittext">$(text)</h1><p class="translation">$(text2)</p></div><div class="credits"><p class="author">$(name)</p></div></div>',
+        elements: [],
+        bubble: {
+            selector: '.js-bubble'
+        },
+        animation: {
+            class: 'is-animated',
+            out: {
+                wait: 150,
+                duration: 500,
+                class: 'animate-out'
             },
-            animation: {
-                class: "is-animated",
-                out: {
-                    wait: 150,
-                    duration: 500,
-                    class: "animate-out"
-                },
-                in : {
-                    wait: 100,
-                    duration: 500,
-                    class: "animate-in"
-                },
-            },
-            colorNames: {
-                aqua: "#00ffff",
-                azure: "#f0ffff",
-                beige: "#f5f5dc",
-                black: "#000000",
-                blue: "#0000ff",
-                brown: "#a52a2a",
-                cyan: "#00ffff"
+            in: {
+                wait: 100,
+                duration: 500,
+                class: 'animate-in'
             }
         },
-        lib = window.hv,
-        $ = window.jQuery;
+        colorNames: ['color-aqua','color-azure','color-beige','color-black','color-blue','color-brown','color-cyan']
+    },
+    lib = window.hv,
+    $ = window.jQuery;
 
     function Bubbles(settings) {
         this.config = $.extend(true, {}, DEFAULTS, settings);
@@ -83,11 +75,31 @@ window.hv = window.hv || {};
 
 
         this.displayNext();
-        $(".js-next").on("click", function() {
+        $('.js-next').on('click', function() {
             self.displayNext();
         });
 
         return this;
+    };
+    fn.setRandomColor = function($el) {
+        // remove old color
+        var classes = $el.attr('class').split(' '),
+        classToRemove = '';
+
+        for (var i = 0; i < classes.length; i++) {
+            if (classes[i].startsWith('color-')) {
+                classToRemove = classes[i];
+            }
+        }
+        $el.removeClass(classToRemove);
+
+
+
+        // new color
+        var colors = this.config.colorNames,
+        randColorClass = colors[Math.floor(colors.length * Math.random())];
+
+        $el.addClass(randColorClass);
     };
 
 
@@ -99,28 +111,31 @@ window.hv = window.hv || {};
 
     fn.draw = function(el, animation) {
         var self = this,
-            newMarkup = this.templateEngine(this.config.template, el);
+        newMarkup = this.templateEngine(this.config.template, el),
+        $newEl = $(newMarkup);
+
+
         if (!animation) {
-            self.$display.empty();
-            self.$display.html(newMarkup);
+            this.$display.empty();
         } else {
-            var $newEl = $(newMarkup),
-                $oldEl = self.$display.find(this.config.bubble.selector);
+            var $oldEl = this.$display.find(this.config.bubble.selector);
+
             $newEl.addClass(this.config.animation.class);
-            self.$display.append($newEl);
 
             this.setAnimateClass($oldEl, this.config.animation.out, function() {
                 console.log(self.$display, $oldEl);
                 $oldEl.remove();
-                console.log("removed");
+                console.log('removed');
             });
 
             this.setAnimateClass($newEl, this.config.animation.in, function() {
-                console.log("inserted");
+                console.log('inserted');
             });
-
-
         }
+
+
+        this.$display.append($newEl);
+        this.setRandomColor($newEl);
     };
 
     fn.setAnimateClass = function($el, animation, cb) {
@@ -146,7 +161,7 @@ window.hv = window.hv || {};
 
     fn.shuffle = function(array) {
         var currentIndex = array.length,
-            temporaryValue, randomIndex;
+        temporaryValue, randomIndex;
 
         // While there remain elements to shuffle...
         while (0 !== currentIndex) {
