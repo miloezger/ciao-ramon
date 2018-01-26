@@ -1,0 +1,21 @@
+// Fonts
+$base-font-folder: 'Circular-Std';
+
+$base-font-family: 'circular-book';
+$base-font: 'Circular Std Book';
+
+$alternate-font-family: 'circular-medium';
+$alternate-font: 'Circular Std Medium';
+
+// Font Sizes
+$base-font-size: 16px;
+$base-line-height: 1.4;
+
+// Colors
+$c-primary: #ff2b87;
+$c-primary-lighter: lighten($c-primary, 10%);
+$c-white: #FFF;
+
+// Text Color
+$c-text-primary: #FFF;
+$c-text-alternate: rgba($c-text-primary, 0.8);

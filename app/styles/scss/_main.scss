@@ -1,0 +1,96 @@
+@include font-face($base-font, $base-font-family, $base-font-folder);
+@include font-face($alternate-font, $alternate-font-family, $base-font-folder);
+
+html {
+    width: 100%;
+    overflow-x: hidden;
+    font-size: $base-font-size;
+    font-size: $base-font-size / 16px * 100%;
+    @include tablet {
+        font-size: $base-font-size / 16px * 95%;
+    }
+    @include mobile {
+        font-size: $base-font-size / 16px * 90%;
+    }
+    @include mobile-portrait {
+        font-size: $base-font-size / 16px * 85%;
+    }
+    text-size-adjust: 100%;
+    &.no-overflow {
+        overflow-y: hidden;
+    }
+}
+
+body {
+    @include body-font;
+    color: $c-text-primary;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    // background: $c-primary;
+}
+
+@keyframes hue {
+    from {
+      filter: hue-rotate(0deg);
+    }    
+    to {
+      filter: hue-rotate(360deg);
+    }
+}
+
+
+.app {
+    overflow: hidden;
+    overflow-y: auto;
+    white-space: nowrap;
+    width: 100%;
+    position: relative;
+    height: 100vh;
+    background: linear-gradient(to bottom right, $c-primary,$c-primary-lighter);
+    animation: hue 30s infinite linear;
+}
+.bubble {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    white-space: normal;
+    width: 100%;
+    height: 100vh;
+    transform: none;
+}
+
+.bubble.is-animated {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    transition: transform .5s;
+    transform: translateX(100%);
+    &.animate-out {
+        transform: translateX(-100%);
+    }
+    &.animate-in {
+        transform: translateX(0%);
+    }
+}
+
+.stage {
+    padding: 5%;
+    h1 {
+        @include font-l;
+        padding-bottom: 20px;
+
+        @include above-mobile {
+            @include font-xxl;
+        }
+    }
+    .translation {
+        color: $c-text-alternate;
+    }
+}
+
+.credits {
+    padding: 5%;
+    color: $c-text-alternate;
+}
