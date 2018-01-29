@@ -16,17 +16,17 @@ html {
         font-size: $base-font-size / 16px * 85%;
     }
     text-size-adjust: 100%;
-    &.no-overflow {
-        overflow-y: hidden;
-    }
 }
 
 body {
     @include body-font;
-    color: $c-text-primary;
     -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
-    // background: $c-primary;
+    background: $c-text-background;
+    // @include simple-gradient($c-color-1);
+
+    @include above-mobile {
+        @include font-s;
+    }
 }
 
 @keyframes hue {
@@ -40,14 +40,18 @@ body {
 
 
 .app {
+    
     overflow: hidden;
-    overflow-y: auto;
     white-space: nowrap;
     width: 100%;
-    position: relative;
-    height: 100vh;
-    background: linear-gradient(to bottom right, $c-primary,$c-primary-lighter);
-    animation: hue 30s infinite linear;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    cursor: pointer;
+    // background: linear-gradient(to bottom right, $c-primary,$c-primary-lighter);
+    // animation: hue 30s infinite linear;
 }
 .bubble {
     display: flex;
@@ -55,30 +59,45 @@ body {
     justify-content: space-between;
     white-space: normal;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     transform: none;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    /*
+    &.color-1 {
+        @include simple-gradient($c-color-1);
+    }
+    &.color-2 {
+        @include simple-gradient($c-color-2);
+    }
+    &.color-3 {
+        @include simple-gradient($c-color-3);
+    }
+    &.color-4 {
+        @include simple-gradient($c-color-4);
+    }
+    &.color-5 {
+        @include simple-gradient($c-color-5);
+    }
+    &.color-6 {
+        @include simple-gradient($c-color-6);
+    }
+    &.color-7 {
+        @include simple-gradient($c-color-7);
+    }
+    &.color-8 {
+        @include simple-gradient($c-color-8);
+    }
+    &.color-9 {
+        @include simple-gradient($c-color-9);
+    }
+    &.color-10 {
+        @include simple-gradient($c-color-10);
+    }
+    */
+    background-color: $c-text-background;
+    opacity: 1;
 
-    &.color-aqua {
-        background-color: #00ffff;
-    }
-    &.color-azure {
-        background-color: #f0ffff;
-    }
-    &.color-beige {
-        background-color: #f5f5dc;
-    }
-    &.color-black {
-        background-color: #000000;
-    }
-    &.color-blue {
-        background-color: #0000ff;
-    }
-    &.color-brown {
-        background-color: #a52a2a;
-    }
-    &.color-cyan {
-        background-color: #00ffff;
-    }
 }
 
 .bubble.is-animated {
@@ -87,13 +106,19 @@ body {
     top: 0;
     width: 100%;
     height: 100%;
-    transition: transform .5s;
-    transform: translateX(100%);
+    opacity: 0;
+    overflow: hidden;
+    transition: all .5s ease;
+    transform: scale(2);
+
     &.animate-out {
-        transform: translateX(-100%);
+        opacity: 0;
+        transform: scale(0.1);
+        overflow: hidden;
     }
     &.animate-in {
-        transform: translateX(0%);
+        opacity: 1;
+        transform: scale(1);
     }
 }
 
@@ -104,6 +129,10 @@ body {
         padding-bottom: 20px;
 
         @include above-mobile {
+            @include font-xl;
+        }
+
+        @include above-desktop-plus {
             @include font-xxl;
         }
     }
@@ -114,5 +143,5 @@ body {
 
 .credits {
     padding: 5%;
-    color: $c-text-alternate;
+    color: $c-text-primary;
 }

@@ -15,7 +15,25 @@ $base-line-height: 1.4;
 $c-primary: #ff2b87;
 $c-primary-lighter: lighten($c-primary, 10%);
 $c-white: #FFF;
+$c-black: #000;
+
+$c-color-1: #001f3f;
+$c-color-2: #0074D9;
+$c-color-3: #7FDBFF;
+$c-color-4: #39CCCC;
+$c-color-5: #3D9970;
+$c-color-6: #2ECC40;
+$c-color-7: #01FF70;
+$c-color-8: #FFDC00;
+$c-color-9: #FF851B;
+$c-color-10: #FF4136;
+$c-color-11: #85144b;
+$c-color-12: #F012BE;
+$c-color-13: #B10DC9;
+
+
 
 // Text Color
-$c-text-primary: #FFF;
-$c-text-alternate: rgba($c-text-primary, 0.8);
+$c-text-primary: #000;
+$c-text-background: #FFF;
+$c-text-alternate: rgba($c-text-primary, 0.5);

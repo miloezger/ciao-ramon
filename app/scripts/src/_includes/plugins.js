@@ -53,7 +53,7 @@ window.hv = window.hv || {};
                 class: 'animate-in'
             }
         },
-        colorNames: ['color-aqua','color-azure','color-beige','color-black','color-blue','color-brown','color-cyan']
+        colorNames: ['color-1','color-2','color-3','color-4','color-5','color-6','color-7','color-8','color-9','color-10']
     },
     lib = window.hv,
     $ = window.jQuery;
@@ -77,6 +77,13 @@ window.hv = window.hv || {};
         this.displayNext();
         $('.js-next').on('click', function() {
             self.displayNext();
+        });
+
+        $(window).keypress(function (e) {
+            if (e.keyCode === 0 || e.keyCode === 32 || e.keyCode === 39) {
+                e.preventDefault()
+                self.displayNext();
+            }
         });
 
         return this;

@@ -6,6 +6,7 @@ $mq-mobile             : 750px !default;
 $mq-tablet-portrait    : 900px !default;
 $mq-tablet             : 1050px !default;
 $mq-desktop            : 1382px !default;
+$mq-desktop-plus       : 1600px !default;
 
 
 @mixin mobile-portrait {
@@ -58,6 +59,18 @@ $mq-desktop            : 1382px !default;
         @content;
     }
 }
+@mixin above-desktop-plus {
+    @media (min-width : ($mq-desktop-plus + 1px)) {
+        @content;
+    }
+}
+
+
+/* Colors */
+
+@mixin simple-gradient($color) {
+    background: linear-gradient(to bottom right, $color, darken($color, 10%));
+}
 
 
 
@@ -98,7 +111,7 @@ $mq-desktop            : 1382px !default;
   font-family: $base-font;
   @include font-size($base-font-size);
   line-height: $base-line-height;
-  // color: $base-font-color;
+  color: $c-text-primary;
 }
 
 
@@ -106,31 +119,31 @@ $mq-desktop            : 1382px !default;
 // Heading
 @mixin font-xxl {
   font-family: $alternate-font;
-  @include font-size(80px);
-  line-height: 1.15;
+  @include font-size(100px);
+  line-height: 1.05;
 }
 
 @mixin font-xl {
   font-family: $alternate-font;
-  @include font-size(26px);
-  line-height: 1.3;
+  @include font-size(90px);
+  line-height: 1.15;
 }
 
 @mixin font-l {
   font-family: $alternate-font;
-  @include font-size(30px);
+  @include font-size(40px);
   line-height: 1.16;
 }
 
+@mixin font-m {
+    font-family: $alternate-font;
+    @include font-size(36px);
+    line-height: 1.16;
+}
 
 
 // Copy
-@mixin font-m {
-  @include font-size(19px);
-  line-height: 1.37;
-}
-
 @mixin font-s {
-  @include font-size(16px);
+  @include font-size(30px);
   line-height: 1.5;
 }
